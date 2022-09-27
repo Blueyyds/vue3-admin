@@ -2,12 +2,19 @@
 import { ref } from 'vue'
 import Blog from './components/blog.vue'
 import useCounterStore from './stores/counter'
+import Nprogress from 'nprogress'
+import 'nprogress/nprogress.css'
 
 const posts = ref([
   { id: 1, title: 'My journey with Vue' },
   { id: 2, title: 'Blogging with Vue' },
   { id: 3, title: 'Why Vue is so fun' },
 ])
+
+Nprogress.start()
+setTimeout(() => {
+  Nprogress.done(true)
+}, 300)
 
 const postFontSize = ref(1)
 const show = ref(true)
