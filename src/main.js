@@ -17,16 +17,17 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component)
 }
 
-//TODO Import i18n Plugin
-import i18n from '@/plugins/i18n'
-app.use(i18n, {
-  greetings: {
-    hello: 'Blue798',
-  },
-})
+//TODO Import SvgIcon
+import 'virtual:svg-icons-register'
+
+//TODO Registe i18n
+import i18n from './locale'
+app.use(i18n)
 
 app.use(createPinia())
 app.use(ElementPlus)
 app.use(router)
 
 app.mount('#app')
+
+export default app
