@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-container>
-      <el-aside :width="isCollapse ? '64px' : '270px'">
+      <el-aside :width="isCollapse ? '64px' : '240px'" class="hidden-xs-only">
         <Sidebar />
       </el-aside>
       <el-container>
@@ -21,19 +21,21 @@ import Sidebar from './components/sidebar/index.vue'
 import AppMain from './components/AppMain.vue'
 import Navbar from './components/Navbar/index.vue'
 import useAppStore from '@/stores/app'
-import { computed } from 'vue'
+import { computed, watch } from 'vue'
+import { useResizeHandler } from './composition/resizeHandler'
+import { useRoute } from 'vue-router'
 
 const appStore = useAppStore()
+const route = useRoute()
 const isCollapse = computed(() => {
   return !appStore.sidebar.opened
 })
-</script>
-
-<script>
-import resizeMixin from './mixin/resizeHandler'
-export default {
-  mixins: [resizeMixin],
-}
+useResizeHandler()
+watch(route, () => {
+  if (appStore.device === 'mobile' && appStore.sidebar.opened) {
+    appStore.closeSidebar({ withoutAnimation: false })
+  }
+})
 </script>
 
 <style lang="scss" scoped>

@@ -1,24 +1,19 @@
 <template>
   <div class="sidebar-container">
     <Logo />
-    <el-scrollbar :height="height">
-      <el-menu default-active="2" :collapse="isCollapse">
-        <el-menu-item index="1">
-          <el-icon><Location /></el-icon>
-          <span>Navigator One</span>
-        </el-menu-item>
-        <el-menu-item index="2">
-          <el-icon><IconMenu /></el-icon>
-          <span>Navigator Two</span>
-        </el-menu-item>
-        <el-menu-item index="3">
-          <el-icon><Document /></el-icon>
-          <span>Navigator Three</span>
-        </el-menu-item>
-        <el-menu-item index="4">
-          <el-icon><Setting /></el-icon>
-          <span>Navigator Four</span>
-        </el-menu-item>
+    <el-scrollbar>
+      <el-menu
+        :default-active="activeMenu"
+        :collapse="isCollapse"
+        router
+        :collapse-transition="false"
+      >
+        <SidebarItem
+          v-for="route in permissionStore.routes"
+          :key="route.path"
+          :item="route"
+          :base-path="route.path"
+        />
       </el-menu>
     </el-scrollbar>
   </div>
@@ -26,27 +21,35 @@
 
 <script setup>
 import useAppStore from '@/stores/app'
-import {
-  Document,
-  Menu as IconMenu,
-  Location,
-  Setting,
-} from '@element-plus/icons-vue'
-import { computed, ref } from 'vue'
+import usePermissonStore from '@/stores/permisson'
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
 import Logo from './logo.vue'
+import SidebarItem from './sidebarItem.vue'
 
-const height = ref(window.innerHeight - 85)
 const appStore = useAppStore()
+const permissionStore = usePermissonStore()
+const route = useRoute()
+
 const isCollapse = computed(() => {
   return !appStore.sidebar.opened
+})
+const activeMenu = computed(() => {
+  const { meta, path } = route
+  if (meta.activeMenu) {
+    return meta.activeMenu
+  }
+  return path
 })
 </script>
 
 <style lang="scss">
 .sidebar-container {
+  height: 100%;
   .el-scrollbar {
     padding: 0 !important;
     background-color: #fff !important;
+    height: calc(100% - 52px);
 
     .el-menu {
       border-radius: 4px;

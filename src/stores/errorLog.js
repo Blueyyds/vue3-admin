@@ -6,10 +6,10 @@ const useErrorLogStore = defineStore('ErrorLog', {
   }),
   getters: {},
   actions: {
-    addErrorLog: log => {
+    addErrorLog(log) {
       this.logs.push(log)
     },
-    clearErrorLog: () => {
+    clearErrorLog() {
       this.logs.splice(0)
     },
   },

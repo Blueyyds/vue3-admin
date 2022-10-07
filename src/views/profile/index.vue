@@ -3,7 +3,7 @@
     <el-card>
       <template #header>
         <div class="card-header">
-          <span>{{ $t('Dashboard') }}</span>
+          <span>Profile</span>
         </div>
       </template>
       <el-table mb-1 :data="[]" />
@@ -12,10 +12,6 @@
   </div>
 </template>
 
-<script setup name="Dashboard">
-import i18n from '@/locale'
-
-console.log('i18n.global.locale', i18n.global.locale)
-</script>
+<script setup name="Profile"></script>
 
 <style lang="scss"></style>

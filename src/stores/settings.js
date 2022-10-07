@@ -2,6 +2,9 @@ import { defineStore } from 'pinia'
 import settings from '@/settings'
 let { showSettings, tagsView, fixedHeader, sidebarLogo } = settings
 import i18n from '@/locale'
+import Cookies from 'js-cookie'
+
+console.log('in store,', Cookies.get('locale'))
 
 const useSettingStore = defineStore('Setting', {
   state: () => ({
@@ -10,11 +13,14 @@ const useSettingStore = defineStore('Setting', {
     fixedHeader,
     sidebarLogo,
     locale: i18n.global.locale,
+    theme: Cookies.get('theme') || 'light',
   }),
   getters: {},
   actions: {
-    toggleLanguage() {
-      this.locale = this.locale === 'zhCn' ? 'en' : 'zhCn'
+    setLocale(locale) {
+      if (this.locale === locale) return
+      this.locale = locale
+      i18n.global.locale = locale
     },
   },
 })

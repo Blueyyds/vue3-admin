@@ -31,10 +31,11 @@ service.interceptors.response.use(
     const res = response.data
 
     if (res.code !== 20000) {
+      const message = res.msg.trim() !== '' ? res.msg.trim() : 'Error Request'
       ElMessage({
-        message: res.msg || 'Error Request',
+        message,
         type: 'error',
-        duration: 5000,
+        duration: 2000,
       })
 
       return Promise.reject(new Error(res.message || 'Error'))

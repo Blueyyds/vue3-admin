@@ -101,3 +101,9 @@ export default {
   }
 }
 </style>
+
+<style>
+.errPage-container .el-scrollbar__view {
+  height: 100%;
+}
+</style>

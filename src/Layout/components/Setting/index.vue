@@ -1,7 +1,11 @@
 <template>
   <div class="drawer-container">
     <div>
-      <h3 class="drawer-title">Page style setting</h3>
+      <el-divider content-position="center">Global</el-divider>
+      <div class="drawer-item">
+        <span>Toggle Theme</span>
+        <ToggleTheme style="float: right" />
+      </div>
 
       <div class="drawer-item">
         <span>Open Tags-View</span>
@@ -23,6 +27,7 @@
 
 <script setup>
 import useSettingStore from '@/stores/settings'
+import ToggleTheme from '@/components/ToggleTheme/index.vue'
 import { storeToRefs } from 'pinia'
 import { watch } from 'vue'
 
@@ -42,6 +47,7 @@ watch(sidebarLogo, value => {
 <style lang="scss" scoped>
 .drawer-container {
   padding: 24px;
+  padding-top: 0;
   font-size: 14px;
   line-height: 1.5;
   word-wrap: break-word;

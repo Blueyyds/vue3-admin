@@ -1,5 +1,5 @@
 import { getInfo, login } from '@/api/user'
-import { getToken, setToken } from '@/utils/auth'
+import { getToken, removeToken, setToken } from '@/utils/auth'
 import { defineStore } from 'pinia'
 
 const useUserStore = defineStore('User', {
@@ -12,42 +12,38 @@ const useUserStore = defineStore('User', {
   }),
   getters: {},
   actions: {
-    login({ username, password }) {
-      return new Promise((resolve, reject) => {
-        login({ username: username.trim(), password })
-          .then(({ data }) => {
-            this.token = data.token
-            setToken(data.token)
-            resolve()
-            console.log('login ok!')
-          })
-          .catch(err => {
-            reject(err)
-          })
-      })
+    async login({ username, password }) {
+      console.log('request login')
+      const res = await login({ username: username.trim(), password })
+      if (res.code === 20000) {
+        this.token = res.data.token
+        setToken(res.data.token)
+      } else {
+        throw new Error('login failed')
+      }
     },
 
-    getInfo() {
-      return new Promise((resolve, reject) => {
-        getInfo()
-          .then(({ data }) => {
-            if (!data) {
-              reject('Verification failed, please Login again.')
-            }
-
-            this.roles = data.roles
-            this.name = data.name
-            this.description = data.description
-            this.avatar = data.avatar
-            resolve(data)
-          })
-          .catch(err => {
-            reject(err)
-          })
-      })
+    async getInfo() {
+      const res = await getInfo()
+      console.log(res)
+      if (res.code !== 20000) {
+        throw new Error('Verification failed, please Login again.')
+      } else {
+        this.roles = res.data.roles
+        this.name = res.data.name
+        this.description = res.data.description
+        this.avatar = res.data.avatar
+        return res.data
+      }
     },
 
     logout() {},
+
+    resetToken() {
+      this.token = ''
+      this.roles = []
+      removeToken()
+    },
   },
 })
 

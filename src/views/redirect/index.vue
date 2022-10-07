@@ -7,5 +7,9 @@ const router = useRouter()
 const { params, query } = route
 const { path } = params
 console.log(path, query)
-router.replace({ path: '/' + path, query })
+router.replace({ path, query })
 </script>
+
+<template>
+  <div></div>
+</template>

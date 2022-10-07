@@ -6,4 +6,5 @@ module.exports = {
   htmlWhitespaceSensitivity: 'ignore',
   arrowParens: 'avoid',
   bracketSpacing: true,
+  endOfLine: 'auto', //不让prettier检测文件每行结束的格式
 }

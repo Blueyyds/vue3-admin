@@ -78,12 +78,15 @@ const submitForm = async () => {
   if (!formRef.value) return
   await formRef.value.validate(valid => {
     if (valid) {
-      console.log('submit!')
+      console.log('submit ok!')
       const userStore = useUserStore()
+      console.log('submit ok!')
+      console.log(form)
       userStore.login(form).then(() => {
-        console.log(router)
         router.push({ path: '/' })
+        console.log('login ok!')
       })
+      console.log('submit ok!')
     } else {
       console.log('error submit!')
       ElMessage({
