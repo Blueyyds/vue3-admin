@@ -15,7 +15,6 @@
 import useSettingStore from '@/stores/settings';
 import { computed } from 'vue';
 import SvgIcon from '../SvgIcon/index.vue';
-import { useDark, useToggle } from '@vueuse/core';
 
 const settingStore = useSettingStore();
 const state = computed(() => {
@@ -23,9 +22,6 @@ const state = computed(() => {
 });
 const toggleTheme = () => {
   settingStore.theme = settingStore.theme === 'light' ? 'dark' : 'light';
-
-  const isDark = useDark();
-  const toggleDark = useToggle(isDark);
 };
 </script>
 

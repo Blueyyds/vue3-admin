@@ -1,7 +1,5 @@
 <template><div></div></template>
 
-<script setup>
-import Card from '@/components/Card/index.vue';
-</script>
+<script setup></script>
 
 <style lang="scss" scoped></style>

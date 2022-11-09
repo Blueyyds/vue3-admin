@@ -6,7 +6,6 @@ import useSettingStore from '@/stores/settings';
 import router from '@/router';
 import { useRoute } from 'vue-router';
 import { computed, ref } from 'vue';
-import ToggleTheme from '@/components/ToggleTheme/index.vue';
 import Setting from '../Setting/index.vue';
 
 const appStore = useAppStore();
