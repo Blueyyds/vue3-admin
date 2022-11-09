@@ -27,6 +27,10 @@ export function useResizeHandler() {
         appStore.closeSidebar({ withoutAnimation: true })
       } else {
         appStore.toggleDevice('desktop')
+        if (!appStore.sidebar.opened) {
+          appStore.sidebar.opened = true
+          console.log('open sidebar')
+        }
       }
     }
   }

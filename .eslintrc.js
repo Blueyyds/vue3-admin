@@ -1,5 +1,5 @@
 /* eslint-env node */
-require('@rushstack/eslint-patch/modern-module-resolution')
+require('@rushstack/eslint-patch/modern-module-resolution');
 
 module.exports = {
   root: true,
@@ -13,14 +13,13 @@ module.exports = {
   },
   rules: {
     'arrow-parens': 0,
-    semi: 0,
     quotes: 0,
     'vue/multi-word-component-names': 0,
     'prettier/prettier': [
       'error',
       {
-        endOfLine: 'auto',
+        semi: true,
       },
     ],
   },
-}
+};

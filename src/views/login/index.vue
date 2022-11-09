@@ -32,7 +32,7 @@
             ref="passwordRef"
           >
             <template #prefix>
-              <SvgIcon name="user" color="#c1cbd7" />
+              <SvgIcon name="lock" color="#c1cbd7" />
             </template>
           </el-input>
         </el-form-item>
@@ -45,57 +45,55 @@
 </template>
 
 <script setup>
-import { ref, reactive, onMounted } from 'vue'
-import SvgIcon from '@/components/SvgIcon/index.vue'
-import { ElMessage } from 'element-plus'
-import useUserStore from '@/stores/user'
-import { useRouter } from 'vue-router'
-const router = useRouter()
+import { ref, reactive, onMounted } from 'vue';
+import SvgIcon from '@/components/SvgIcon/index.vue';
+import { ElMessage } from 'element-plus';
+import useUserStore from '@/stores/user';
+import { useRouter } from 'vue-router';
+const router = useRouter();
 
 const form = reactive({
   username: '',
   password: '',
-})
+});
 
-const formRef = ref()
+const formRef = ref();
 const rules = reactive({
   username: [{ required: true, message: '请输入账号', trigger: 'blur' }],
   password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
-})
+});
 
-const usernameRef = ref()
-const passwordRef = ref()
+const usernameRef = ref();
+const passwordRef = ref();
 
 onMounted(() => {
   if (form.username === '') {
-    usernameRef.value.focus()
+    usernameRef.value.focus();
   } else if (form.password === '') {
-    passwordRef.value.focus()
+    passwordRef.value.focus();
   }
-})
+});
 
 const submitForm = async () => {
-  if (!formRef.value) return
+  if (!formRef.value) return;
   await formRef.value.validate(valid => {
     if (valid) {
-      console.log('submit ok!')
-      const userStore = useUserStore()
-      console.log('submit ok!')
-      console.log(form)
+      const userStore = useUserStore();
+      console.log(form);
       userStore.login(form).then(() => {
-        router.push({ path: '/' })
-        console.log('login ok!')
-      })
-      console.log('submit ok!')
+        router.push({ path: '/' });
+        console.log('login ok!');
+      });
+      console.log('submit ok!');
     } else {
-      console.log('error submit!')
+      console.log('error submit!');
       ElMessage({
         message: '表单校验不通过',
         type: 'error',
-      })
+      });
     }
-  })
-}
+  });
+};
 </script>
 
 <style lang="scss" scoped>

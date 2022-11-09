@@ -1,29 +1,32 @@
 <template>
   <div class="app-main">
     <keep-alive>
-      <el-scrollbar>
-        <transition name="fade-transform">
+      <transition name="fade-transform">
+        <Card :title="title">
           <router-view :key="key"></router-view>
-        </transition>
-      </el-scrollbar>
+        </Card>
+      </transition>
     </keep-alive>
   </div>
 </template>
 
 <script setup>
-import { computed } from 'vue'
-import { useRoute } from 'vue-router'
+import { computed } from 'vue';
+import { useRoute } from 'vue-router';
+import Card from '@/components/Card/index.vue';
 
-const route = useRoute()
-const key = computed(() => route.path)
+const route = useRoute();
+const key = computed(() => route.path);
+const title = computed(() => 'menu.' + route.meta.title);
 </script>
 
 <style lang="scss" scoped>
 .app-main {
   height: 100%;
+  padding: 16px;
   .el-scrollbar {
-    height: 100%;
-    padding: 16px;
+    height: calc(100%);
+    // margin: 16px;
   }
 }
 </style>

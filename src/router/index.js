@@ -1,5 +1,5 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import Layout from '@/Layout/index.vue'
+import { createRouter, createWebHistory } from 'vue-router';
+import Layout from '@/Layout/index.vue';
 
 export const constantRoutes = [
   {
@@ -81,9 +81,21 @@ export const constantRoutes = [
       },
     ],
   },
-]
+];
 
 export const asyncRoutes = [
+  {
+    path: '/user',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/user/index.vue'),
+        name: 'User',
+        meta: { title: 'User', icon: 'user', noCache: true },
+      },
+    ],
+  },
   {
     path: '/error',
     component: Layout,
@@ -126,11 +138,11 @@ export const asyncRoutes = [
     redirect: '/404',
     hidden: true,
   },
-]
+];
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: constantRoutes,
-})
+});
 
-export default router
+export default router;

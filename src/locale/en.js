@@ -11,5 +11,6 @@ export default {
     401: '401',
     404: '404',
     Icons: 'Icons',
+    User: 'User',
   },
-}
+};

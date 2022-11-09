@@ -1,21 +1,7 @@
 <template>
-  <div>
-    <el-card>
-      <template #header>
-        <div class="card-header">
-          <span>{{ $t('Dashboard') }}</span>
-        </div>
-      </template>
-      <el-table mb-1 :data="[]" />
-      <el-pagination :total="100" />
-    </el-card>
-  </div>
+  <div></div>
 </template>
 
-<script setup name="Dashboard">
-import i18n from '@/locale'
-
-console.log('i18n.global.locale', i18n.global.locale)
-</script>
+<script setup name="Dashboard"></script>
 
 <style lang="scss"></style>

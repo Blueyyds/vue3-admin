@@ -1,11 +1,11 @@
 <script setup>
-import { computed } from 'vue'
-import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
-import en from 'element-plus/dist/locale/en.mjs'
-import useSettingStore from './stores/settings'
+import { computed } from 'vue';
+import zhCn from 'element-plus/dist/locale/zh-cn.mjs';
+import en from 'element-plus/dist/locale/en.mjs';
+import useSettingStore from './stores/settings';
 
-const settingStore = useSettingStore()
-const locale = computed(() => (settingStore.locale === 'zhCn' ? zhCn : en))
+const settingStore = useSettingStore();
+const locale = computed(() => (settingStore.locale === 'zhCn' ? zhCn : en));
 </script>
 
 <template>

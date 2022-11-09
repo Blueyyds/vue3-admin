@@ -1,5 +1,5 @@
 <script setup name="SvgIcon">
-import { computed } from 'vue'
+import { computed } from 'vue';
 
 const props = defineProps({
   prefix: {
@@ -17,16 +17,16 @@ const props = defineProps({
     type: Number,
     default: 16,
   },
-})
+});
 
 const symbolId = computed(() => {
   if (props.name.includes('el-icon')) {
-    return props.name.split('-')[2]
+    return props.name.split('-')[2];
   } else {
-    return `#${props.prefix}-${props.name}`
+    return `#${props.prefix}-${props.name}`;
   }
-})
-const isElIcon = computed(() => props.name.includes('el-icon'))
+});
+const isElIcon = computed(() => props.name.includes('el-icon'));
 </script>
 
 <template>

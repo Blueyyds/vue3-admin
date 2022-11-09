@@ -1,52 +1,52 @@
 <script setup>
-import SvgIcon from '@/components/SvgIcon/index.vue'
-import useAppStore from '@/stores/app'
-import { UserFilled } from '@element-plus/icons-vue'
-import useSettingStore from '@/stores/settings'
-import router from '@/router'
-import { useRoute } from 'vue-router'
-import { computed, ref } from 'vue'
-import ToggleTheme from '@/components/ToggleTheme/index.vue'
-import Setting from '../Setting/index.vue'
+import SvgIcon from '@/components/SvgIcon/index.vue';
+import useAppStore from '@/stores/app';
+import { UserFilled } from '@element-plus/icons-vue';
+import useSettingStore from '@/stores/settings';
+import router from '@/router';
+import { useRoute } from 'vue-router';
+import { computed, ref } from 'vue';
+import ToggleTheme from '@/components/ToggleTheme/index.vue';
+import Setting from '../Setting/index.vue';
 
-const appStore = useAppStore()
-const settingStore = useSettingStore()
-const route = useRoute()
+const appStore = useAppStore();
+const settingStore = useSettingStore();
+const route = useRoute();
 
 const fullScreenHandler = () => {
   if (appStore.fullScreen) {
-    appStore.exitFullscreen()
+    appStore.exitFullscreen();
   } else {
-    appStore.enterFullScreen()
+    appStore.enterFullScreen();
   }
-}
+};
 
 const fullScreenIcon = computed(() => {
-  return appStore.fullScreen ? 'exit-fullscreen' : 'fullscreen'
-})
+  return appStore.fullScreen ? 'exit-fullscreen' : 'fullscreen';
+});
 
 const handleToggleLanguage = locale => {
-  if (locale === settingStore.locale) return
-  settingStore.setLocale(locale)
-  const { path, params, query } = route
-  params.path = path
-  console.log(params, query)
+  if (locale === settingStore.locale) return;
+  settingStore.setLocale(locale);
+  const { path, params, query } = route;
+  params.path = path;
+  console.log(params, query);
   router.replace({
     name: 'redirect',
     params,
     query,
-  })
-}
+  });
+};
 
 const shadow = computed(() => {
   if (appStore.hiddenSidebar) {
-    return false
+    return false;
   } else {
-    return true
+    return true;
   }
-})
+});
 
-const settingDrawer = ref(false)
+const settingDrawer = ref(false);
 </script>
 
 <template>
@@ -54,9 +54,9 @@ const settingDrawer = ref(false)
     class="navbar-panel"
     :style="{ 'box-shadow': shadow ? 'var(--el-box-shadow-light)' : '' }"
   >
-    <div class="navbar-panel-item">
+    <!-- <div class="navbar-panel-item">
       <ToggleTheme />
-    </div>
+    </div> -->
     <div class="navbar-panel-item">
       <SvgIcon name="desktop" :size="20" />
     </div>

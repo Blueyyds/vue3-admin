@@ -20,27 +20,28 @@
 </template>
 
 <script setup>
-import useAppStore from '@/stores/app'
-import usePermissonStore from '@/stores/permisson'
-import { computed } from 'vue'
-import { useRoute } from 'vue-router'
-import Logo from './logo.vue'
-import SidebarItem from './sidebarItem.vue'
+import useAppStore from '@/stores/app';
+import usePermissonStore from '@/stores/permisson';
+import { computed } from 'vue';
+import { useRoute } from 'vue-router';
+import Logo from './logo.vue';
+import SidebarItem from './sidebarItem.vue';
 
-const appStore = useAppStore()
-const permissionStore = usePermissonStore()
-const route = useRoute()
+const appStore = useAppStore();
+const permissionStore = usePermissonStore();
+const route = useRoute();
+console.log(permissionStore.routes);
 
 const isCollapse = computed(() => {
-  return !appStore.sidebar.opened
-})
+  return !appStore.sidebar.opened;
+});
 const activeMenu = computed(() => {
-  const { meta, path } = route
+  const { meta, path } = route;
   if (meta.activeMenu) {
-    return meta.activeMenu
+    return meta.activeMenu;
   }
-  return path
-})
+  return path;
+});
 </script>
 
 <style lang="scss">

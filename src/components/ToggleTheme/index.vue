@@ -12,17 +12,21 @@
 </template>
 
 <script setup>
-import useSettingStore from '@/stores/settings'
-import { computed } from 'vue'
-import SvgIcon from '../SvgIcon/index.vue'
+import useSettingStore from '@/stores/settings';
+import { computed } from 'vue';
+import SvgIcon from '../SvgIcon/index.vue';
+import { useDark, useToggle } from '@vueuse/core';
 
-const settingStore = useSettingStore()
+const settingStore = useSettingStore();
 const state = computed(() => {
-  return settingStore.theme === 'light' ? false : true
-})
+  return settingStore.theme === 'light' ? false : true;
+});
 const toggleTheme = () => {
-  settingStore.theme = settingStore.theme === 'light' ? 'dark' : 'light'
-}
+  settingStore.theme = settingStore.theme === 'light' ? 'dark' : 'light';
+
+  const isDark = useDark();
+  const toggleDark = useToggle(isDark);
+};
 </script>
 
 <style lang="scss" scoped>
