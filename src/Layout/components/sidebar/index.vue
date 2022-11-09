@@ -30,7 +30,6 @@ import SidebarItem from './sidebarItem.vue';
 const appStore = useAppStore();
 const permissionStore = usePermissonStore();
 const route = useRoute();
-console.log(permissionStore.routes);
 
 const isCollapse = computed(() => {
   return !appStore.sidebar.opened;

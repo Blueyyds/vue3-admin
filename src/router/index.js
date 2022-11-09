@@ -68,6 +68,19 @@ export const constantRoutes = [
     ],
   },
   {
+    path: '/user',
+    component: Layout,
+    redirect: '/user/index',
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/user/index.vue'),
+        name: 'User',
+        meta: { title: 'User', icon: 'user' },
+      },
+    ],
+  },
+  {
     path: '/profile',
     component: Layout,
     redirect: '/profile/index',
@@ -84,18 +97,6 @@ export const constantRoutes = [
 ];
 
 export const asyncRoutes = [
-  {
-    path: '/user',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/user/index.vue'),
-        name: 'User',
-        meta: { title: 'User', icon: 'user', noCache: true },
-      },
-    ],
-  },
   {
     path: '/error',
     component: Layout,

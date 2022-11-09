@@ -1,4 +1,4 @@
-import { asyncRoutes, constantRoutes } from '@/router';
+import router, { asyncRoutes, constantRoutes } from '@/router';
 import { defineStore } from 'pinia';
 
 /**
@@ -51,6 +51,10 @@ const usePermissonStore = defineStore('Permisson', {
       // }
       this.addRoutes = accessedRoutes;
       this.routes = constantRoutes.concat(accessedRoutes);
+
+      this.routes.forEach(r => {
+        router.addRoute(r);
+      });
       return accessedRoutes;
     },
   },

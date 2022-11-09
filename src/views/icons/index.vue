@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <Card :title="'menu.Icons'">
     <ul>
       <li
         v-for="icon in icons"
@@ -12,12 +12,13 @@
         </div>
       </li>
     </ul>
-  </div>
+  </Card>
 </template>
 
 <script setup name="Icons">
 import SvgIcon from '@/components/SvgIcon/index.vue';
 import handleClipboard from '@/utils/clipboard';
+import Card from '@/components/Card/index.vue';
 
 const modulesFiles = import.meta.globEager('@/icons/svg/*.svg');
 const generateText = name => {

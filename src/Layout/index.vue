@@ -17,25 +17,25 @@
 </template>
 
 <script setup>
-import Sidebar from './components/sidebar/index.vue'
-import AppMain from './components/AppMain.vue'
-import Navbar from './components/Navbar/index.vue'
-import useAppStore from '@/stores/app'
-import { computed, watch } from 'vue'
-import { useResizeHandler } from './composition/resizeHandler'
-import { useRoute } from 'vue-router'
+import Sidebar from './components/sidebar/index.vue';
+import AppMain from './components/AppMain.vue';
+import Navbar from './components/Navbar/index.vue';
+import useAppStore from '@/stores/app';
+import { computed, watch } from 'vue';
+import { useResizeHandler } from './composition/resizeHandler';
+import { useRoute } from 'vue-router';
 
-const appStore = useAppStore()
-const route = useRoute()
+const appStore = useAppStore();
+const route = useRoute();
 const isCollapse = computed(() => {
-  return !appStore.sidebar.opened
-})
-useResizeHandler()
+  return !appStore.sidebar.opened;
+});
+useResizeHandler();
 watch(route, () => {
   if (appStore.device === 'mobile' && appStore.sidebar.opened) {
-    appStore.closeSidebar({ withoutAnimation: false })
+    appStore.closeSidebar({ withoutAnimation: false });
   }
-})
+});
 </script>
 
 <style lang="scss" scoped>

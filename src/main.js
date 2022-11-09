@@ -12,10 +12,9 @@ import 'element-plus/dist/index.css';
 import 'element-plus/theme-chalk/display.css';
 import 'element-plus/theme-chalk/dark/css-vars.css';
 import * as ElementPlusIconsVue from '@element-plus/icons-vue';
+import './permisson'; // permission control
 
 const app = createApp(App);
-
-import './permisson'; // permission control
 
 //TODO Auto Import Vue Icon (All Icons)
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
@@ -25,7 +24,7 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 //TODO Import SvgIcon
 import 'virtual:svg-icons-register';
 
-//TODO Registe i18n
+//TODO Register i18n
 import i18n from './locale';
 app.use(i18n);
 

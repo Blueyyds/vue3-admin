@@ -6,7 +6,10 @@
       </div>
     </template>
     <el-scrollbar :height="height">
-      <slot></slot>
+      <Suspense>
+        <slot></slot>
+        <template #fallback>Loading...</template>
+      </Suspense>
     </el-scrollbar>
   </el-card>
 </template>

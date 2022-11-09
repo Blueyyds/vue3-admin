@@ -1,23 +1,21 @@
 <template>
   <div class="app-main">
-    <keep-alive>
-      <transition name="fade-transform">
-        <Card :title="title">
-          <router-view :key="key"></router-view>
-        </Card>
-      </transition>
-    </keep-alive>
+    <router-view :key="key" v-slot="{ Component }">
+      <Suspense>
+        <transition>
+          <component :is="Component" />
+        </transition>
+      </Suspense>
+    </router-view>
   </div>
 </template>
 
 <script setup>
 import { computed } from 'vue';
 import { useRoute } from 'vue-router';
-import Card from '@/components/Card/index.vue';
 
 const route = useRoute();
 const key = computed(() => route.path);
-const title = computed(() => 'menu.' + route.meta.title);
 </script>
 
 <style lang="scss" scoped>

@@ -5,10 +5,14 @@ import { defineStore } from 'pinia';
 const useUserStore = defineStore('User', {
   state: () => ({
     token: getToken(),
-    name: '',
+    id: 0,
+    username: '',
+    realName: '',
     avatar: '',
-    introduction: '',
-    roles: '',
+    role: '',
+    address: '',
+    phone: '',
+    age: '',
   }),
   getters: {},
   actions: {
@@ -44,6 +48,18 @@ const useUserStore = defineStore('User', {
       this.token = '';
       this.roles = [];
       removeToken();
+    },
+
+    commitState(User) {
+      if (typeof User === 'object') {
+        for (let key in this) {
+          if (User[key] != null) {
+            this[key] = User[key];
+          }
+        }
+      } else {
+        return;
+      }
     },
   },
 });

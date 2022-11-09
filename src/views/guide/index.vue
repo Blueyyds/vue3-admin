@@ -1,5 +1,9 @@
-<template><div></div></template>
+<template>
+  <Card title="menu.Guide"></Card>
+</template>
 
-<script setup name="Guide"></script>
+<script setup name="Guide">
+import Card from '@/components/Card/index.vue';
+</script>
 
-<style lang="scss"></style>
+<style lang="scss" scoped></style>
