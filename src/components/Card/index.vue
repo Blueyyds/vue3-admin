@@ -5,12 +5,13 @@
         <span>{{ $t(title) }}</span>
       </div>
     </template>
-    <el-scrollbar :height="height">
-      <Suspense>
-        <slot></slot>
-        <template #fallback>Loading...</template>
-      </Suspense>
-    </el-scrollbar>
+    <div class="content">
+      <el-scrollbar :height="height">
+        <div>
+          <slot></slot>
+        </div>
+      </el-scrollbar>
+    </div>
   </el-card>
 </template>
 
@@ -22,19 +23,16 @@ defineProps({
   },
 });
 
-const height = document.documentElement.clientHeight - 62 - 32;
+const height = document.documentElement.clientHeight - 70 - 62 - 64;
+console.log(height);
 </script>
 
 <style lang="scss">
 .el-card {
   height: 100%;
-
-  &__body {
-    padding: 0 !important;
-  }
 }
 
-.app-main .el-scrollbar {
+.content > .el-scrollbar {
   padding: 16px;
   height: 100%;
 
